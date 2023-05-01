@@ -1,0 +1,91 @@
+  setup(){
+
+    const authStore = useAuthStore()
+
+    const { handleSubmit } = useForm({
+      validationSchema: {
+        userEmail (value) {
+          if(value) return true
+          return 'User Email needs to be inputted'
+        },
+        userPassword (value) {
+          if(value) return true
+          return 'User Password must be required'
+        },
+        // userConfirmPassword (value) {
+        //   if(value) return true
+        //   return 'User Confirm Password must be required'
+        // },
+        // userConfirmPassword () {
+        //   if(userConfirmPassword.value.value != userPassword.value.value) return true
+        //   return 'User Confirm Password can\'t be matched'
+        // },
+        // userID (value) {
+        //   if(value) return true
+        //   return 'User ID must be inputted'
+        // },
+        // userFirstName (value) {
+        //   if(value) return true
+        //   return 'User FirstName must be inputted'
+        // },
+        // userLastName (value) {
+        //   if(value) return true
+        //   return 'Client Address needs to inputted'
+        // },
+        // userAddress (value) {
+        //   if(value) return true
+        //   return 'Client Address needs to inputted'
+        // },
+        // userBirthday (value) {
+        //   if(value) return true
+        //   return 'Client Address needs to inputted'
+        // },
+      },
+      initialValues: {
+        userEmail: '',
+        userPassword: '',
+        // userConfirmPassword: '',
+        // userID: '',
+        // userFirstName: '',
+        // userLastName: '',
+        // userAddress: '',
+        // userBirthday: '',
+        // userDateRegistered: new Date().toISOString()
+      }
+    })
+
+    const userEmail = useField('userEmail')
+    const userPassword = useField('userPassword')
+    // const userID = useField('userID')
+    // const userFirstName = useField('userFirstName')
+    // const userLastName = useField('userLastName')
+    // const userBirthday = useField('userBirthday')
+    // const userAddress = useField('userAddress')
+
+    const submit = handleSubmit(values => {
+      authStore.signIn({
+        userEmail: values.userEmail, 
+        userPassword: values.userPassword
+      })
+
+      console.log(values.userPassword)
+      
+      // setTimeout(myURL, 4000)
+      // shoppingStore.addUsers(values)
+    })
+
+    // const myURL = () => {
+    //   window.location.href = '#/'
+    // }
+
+    return {
+      userEmail, 
+      userPassword, 
+      // userID, 
+      // userFirstName, 
+      // userLastName, 
+      // userBirthday,
+      // userAddress,
+      submit
+    }
+  }

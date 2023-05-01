@@ -1,0 +1,21 @@
+<v-text-field
+  name="email"
+  type="email"
+  v-model="userEmail.value.value"
+  :error-messages="userEmail.errorMessage.value"
+  placeholder="User Email Address"
+>
+</v-text-field>
+
+<v-text-field
+  name="password"
+  type="password"
+  v-model="userPassword.value.value"
+  :error-messages="userPassword.errorMessage.value"
+  placeholder="User Password"
+  autocomplete="on"
+>
+</v-text-field>
+
+
+
